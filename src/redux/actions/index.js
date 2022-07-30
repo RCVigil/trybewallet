@@ -3,9 +3,7 @@ export const NEW_USER = 'NEW_USER';
 
 export const newUser = (email) => ({
   type: NEW_USER,
-  payload: {
-    email,
-  },
+  email,
 });
 
 export const NEW_WALLET = 'NEW_WALLET';

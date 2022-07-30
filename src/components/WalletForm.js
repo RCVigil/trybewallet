@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
 
 class WalletForm extends Component {
   render() {
@@ -8,4 +7,4 @@ class WalletForm extends Component {
     );
   }
 }
-export default connect()(WalletForm);
+export default WalletForm;
