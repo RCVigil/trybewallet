@@ -19,7 +19,8 @@ class Login extends React.Component {
     });
   };
 
-  handleClick = () => {
+  handleClick = (e) => {
+    e.preventDefault();
     const { loginUser, history } = this.props;
     const { email } = this.state;
     loginUser(email);
@@ -61,7 +62,7 @@ class Login extends React.Component {
         </label>
 
         <button
-          type="button"
+          type="submit"
           disabled={ senha.length < caracterMin || !teste.test(email) }
           onClick={ this.handleClick }
         >
