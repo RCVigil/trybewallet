@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { newUser } from '../redux/actions';
+import './Login.css';
 
 class Login extends React.Component {
   constructor() {
@@ -35,40 +36,52 @@ class Login extends React.Component {
     const caracterMin = 6;
 
     return (
-      <form>
-        <label htmlFor="input-email">
-          <input
-            id="input-email"
-            type="email"
-            name="email"
-            placeholder="email@email.com"
-            data-testid="email-input"
-            value={ email }
-            onChange={ this.handleChange }
-          />
-        </label>
+      <div className="login">
+        <form className="inputForm">
+          <div className="card-header">
+            <h2>Login</h2>
+          </div>
 
-        <label htmlFor="input-senha">
-          <input
-            id="input-senha"
-            type="password"
-            name="senha"
-            placeholder="senha"
-            data-testid="password-input"
-            value={ senha }
-            onChange={ this.handleChange }
-            autoComplete="on"
-          />
-        </label>
+          <div className="card-content">
+            <label htmlFor="input-email" className="card-content-area">
+              <input
+                className="inputEmail"
+                id="input-email"
+                type="email"
+                name="email"
+                placeholder="email@email.com"
+                data-testid="email-input"
+                value={ email }
+                onChange={ this.handleChange }
+              />
+            </label>
 
-        <button
-          type="submit"
-          disabled={ senha.length < caracterMin || !teste.test(email) }
-          onClick={ this.handleClick }
-        >
-          Entrar
-        </button>
-      </form>
+            <label htmlFor="input-senha" className="card-content-area">
+              <input
+                id="input-senha"
+                type="password"
+                name="senha"
+                placeholder="senha"
+                data-testid="password-input"
+                value={ senha }
+                onChange={ this.handleChange }
+                autoComplete="on"
+              />
+            </label>
+          </div>
+
+          <div className="card-footer">
+            <button
+              className="submit"
+              type="submit"
+              disabled={ senha.length < caracterMin || !teste.test(email) }
+              onClick={ this.handleClick }
+            >
+              Entrar
+            </button>
+          </div>
+        </form>
+      </div>
     );
   }
 }

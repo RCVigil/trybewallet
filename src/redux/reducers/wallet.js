@@ -14,7 +14,7 @@ function wallet(state = INITIAL_STATE, action) {
   case NEW_WALLET:
     return {
       ...state,
-      state: action.newWallet,
+      currencies: action.payload,
     };
   default:
     return state;

@@ -1,0 +1,78 @@
+.login {
+  align-items: center;
+  background-color: #454d6b;
+  display: flex;
+  font-family: Cambria, Cochin, Georgia, Times, serif;
+  height: 100vh;
+  justify-content: center;
+}
+
+.inputForm {
+  background-color: rgba(19, 19, 19, 0.3);
+  border-radius: 2px;
+  padding: 40px;
+  width: 280px;
+}
+
+.card-header {
+  color: white;
+  opacity: 0.8;
+  padding-bottom: 50px;
+}
+
+.card-header:after {
+  background-color: white;
+  content: '';
+  display: block;
+  height: 1px;
+  margin-left: -5px;
+  margin-top: -17px;
+  width: 70px;
+}
+
+.card-content label {
+  color: white;
+  font-size: 12px;
+  opacity: 0.8;
+}
+
+.card-content-area {
+  display: flex;
+  flex-direction: column;
+  padding: 10px 0;
+}
+
+.card-content-area input {
+  background-color: transparent;
+  border: none;
+  border-bottom: 1px solid #e1e1e1;
+  color: white;
+  cursor: pointer;
+  margin-top: 10px;
+  outline: none;
+  padding: 5px 15px;
+}
+
+.card-footer {
+  display: flex;
+  flex-direction: column;
+}
+
+.card-footer .submit {
+  background-color: #a13854;
+  border: none;
+  border-radius: 51px;
+  color: #e1e1e1;
+  cursor: pointer;
+  height: 40px;
+  margin: 10px 0;
+  opacity: 0.4;
+  transition: 0.3s;
+  width: 100%;
+}
+
+.card-footer .submit:hover {
+  font-size: 15px;
+  height: 45px;
+  opacity: 1;
+}

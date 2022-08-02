@@ -4,6 +4,23 @@ import { connect } from 'react-redux';
 // import { user } from '../redux/reducers/user';
 
 class Header extends Component {
+  // constructor() {
+  //   super();
+  //   this.state = {
+  //     expenses: [
+  //       {
+  //         id: 0,
+  //         subTotal: 0,
+  //       },
+  //     ],
+  //     ask: 0,
+  //   };
+  // }
+
+  handleClick = (e) => {
+    e.preventDefault();
+  };
+
   render() {
     const { email } = this.props;
     return (
@@ -11,6 +28,13 @@ class Header extends Component {
         <h4 data-testid="email-field">{email}</h4>
         <h4 data-testid="total-field">0</h4>
         <h4 data-testid="header-currency-field">BRL</h4>
+        <button
+          type="submit"
+          onChange={ this.handleChange }
+        >
+          Adicionar despesa
+        </button>
+        <h4 data-testid="total-field">TOTAL ASK</h4>
       </div>
     );
   }

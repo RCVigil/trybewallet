@@ -8,17 +8,7 @@ export const newUser = (email) => ({
 
 export const NEW_WALLET = 'NEW_WALLET';
 
-export const newWallet = (
-  currencies,
-  expenses,
-  editor,
-  idToEdit,
-) => ({
+export const newWallet = (payload) => ({
   type: NEW_WALLET,
-  payload: {
-    currencies,
-    expenses,
-    editor,
-    idToEdit,
-  },
+  payload,
 });
