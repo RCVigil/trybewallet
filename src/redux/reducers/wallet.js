@@ -1,4 +1,4 @@
-import { NEW_WALLET } from '../actions';
+import { NEW_EXPENSES, NEW_WALLET } from '../actions';
 
 // Esse reducer será responsável por tratar o todas as informações relacionadas as despesas
 
@@ -15,6 +15,11 @@ function wallet(state = INITIAL_STATE, action) {
     return {
       ...state,
       currencies: action.payload,
+    };
+  case NEW_EXPENSES:
+    return {
+      ...state,
+      expenses: [...state.expenses, action.value],
     };
   default:
     return state;

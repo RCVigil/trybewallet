@@ -12,3 +12,10 @@ export const newWallet = (payload) => ({
   type: NEW_WALLET,
   payload,
 });
+
+export const NEW_EXPENSES = 'NEW_EXPENSES';
+
+export const newExpenses = (value) => ({
+  type: NEW_EXPENSES,
+  value,
+});

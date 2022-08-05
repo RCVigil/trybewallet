@@ -1,24 +1,19 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-// import { user } from '../redux/reducers/user';
 
 class Header extends Component {
-  // constructor() {
-  //   super();
-  //   this.state = {
-  //     expenses: [
-  //       {
-  //         id: 0,
-  //         subTotal: 0,
-  //       },
-  //     ],
-  //     ask: 0,
-  //   };
-  // }
-
-  handleClick = (e) => {
-    e.preventDefault();
+  totCash = () => {
+    const { expenses } = this.props;
+    if (expenses.length > 0) {
+      const tot1Cash = expenses
+        .reduce((acc, elem) => {
+          const chaveCur = elem.currency;
+          return acc + elem.value * elem.exchangeRates[chaveCur].ask;
+        }, 0)
+        .toFixed(2);
+      return tot1Cash;
+    }
   };
 
   render() {
@@ -26,15 +21,10 @@ class Header extends Component {
     return (
       <div>
         <h4 data-testid="email-field">{email}</h4>
-        <h4 data-testid="total-field">0</h4>
+
+        <p data-testid="total-field">{this.totCash()}</p>
+
         <h4 data-testid="header-currency-field">BRL</h4>
-        <button
-          type="submit"
-          onChange={ this.handleChange }
-        >
-          Adicionar despesa
-        </button>
-        <h4 data-testid="total-field">TOTAL ASK</h4>
       </div>
     );
   }
@@ -43,11 +33,12 @@ class Header extends Component {
 function mapStateToProps(state) {
   return {
     email: state.user.email,
+    expenses: state.wallet.expenses,
   };
 }
 
 Header.propTypes = {
-  email: PropTypes.string.isRequired,
-};
+  email: PropTypes.string,
+}.isRequired;
 
 export default connect(mapStateToProps)(Header);

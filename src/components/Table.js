@@ -19,6 +19,9 @@ class Table extends Component {
               <th>Editar/Excluir</th>
             </tr>
           </thead>
+          <tbody>
+            
+          </tbody>
         </table>
       </div>
     );
