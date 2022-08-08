@@ -20,13 +20,4 @@ describe('Testando o componente <Header />', () => {
 
     expect(paragCont).toBeInTheDocument(0);
   });
-
-  // test('Testando se tem um email na tela', () => {
-  //   renderWithRedux(<Header />);
-
-  //   const emailCont = screen.getByRole('heading',
-  //     { name: /email@email\.com/i });
-
-  //   expect(emailCont).toHaveContent('email@email.com');
-  // });
 });
