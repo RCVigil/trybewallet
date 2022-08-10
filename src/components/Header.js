@@ -22,7 +22,7 @@ class Header extends Component {
       <div>
         <h4 data-testid="email-field">{email}</h4>
 
-        <p data-testid="total-field">{expenses.length === 0 ? 0 : this.totCash()}</p>
+        <p data-testid="total-field">{expenses.length === 0 ? '0.00' : this.totCash()}</p>
 
         <h4 data-testid="header-currency-field">BRL</h4>
       </div>

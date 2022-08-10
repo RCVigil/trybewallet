@@ -15,7 +15,15 @@ export const newWallet = (payload) => ({
 
 export const NEW_EXPENSES = 'NEW_EXPENSES';
 
-export const newExpenses = (value) => ({
+export const newExpenses = (value, payload) => ({
   type: NEW_EXPENSES,
   value,
+  payload,
+});
+
+export const DEL_LINE = 'DEL_LINE';
+
+export const deleteLine = (payload) => ({
+  type: DEL_LINE,
+  payload,
 });

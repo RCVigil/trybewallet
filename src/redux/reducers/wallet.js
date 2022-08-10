@@ -1,4 +1,4 @@
-import { NEW_EXPENSES, NEW_WALLET } from '../actions';
+import { NEW_EXPENSES, NEW_WALLET, DEL_LINE } from '../actions';
 
 // Esse reducer será responsável por tratar o todas as informações relacionadas as despesas
 
@@ -20,7 +20,14 @@ function wallet(state = INITIAL_STATE, action) {
     return {
       ...state,
       expenses: [...state.expenses, action.value],
+      idToEdit: action.payload,
     };
+  case DEL_LINE:
+    return {
+      ...state,
+      expenses: [...state.expenses].filter((elem) => elem.id !== action.payload),
+    };
+
   default:
     return state;
   }

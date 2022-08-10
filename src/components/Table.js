@@ -1,14 +1,21 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { deleteLine } from '../redux/actions';
 
 class Table extends Component {
+  delExpense = (id) => {
+    const { newExpenses } = this.props;
+    console.log(`id: ${id}`);
+    newExpenses(id);
+  }
+
   render() {
     const { expenses } = this.props;
     return (
       <div>
         <table>
-          {/* <caption>Wallet Table</caption> */}
+          <caption>Wallet Table</caption>
           <thead>
             <tr>
               <th>Descrição</th>
@@ -23,20 +30,89 @@ class Table extends Component {
             </tr>
           </thead>
           <tbody>
-            {expenses.map((e, index) => (
-              <tr key={ index }>
-                <td className="text-var">{e.description}</td>
-                <td className="text-var">{e.tag}</td>
-                <td className="text-var">{e.method}</td>
-                <td className="text-var">{Number(e.value).toFixed(2)}</td>
-                <td className="text-var">{e.exchangeRates[e.currency].name}</td>
-                <td className="text-var">
-                  {Number(e.exchangeRates[e.currency].ask).toFixed(2)}
+            {expenses.map((expens, index) => (
+              <tr key={ expens.id }>
+
+                <td
+                  className="text-var"
+                  id={ index }
+                >
+                  {expens.description}
                 </td>
-                <td className="text-var">
-                  {Number(e.value * e.exchangeRates[e.currency].ask).toFixed(2)}
+
+                <td
+                  className="text-var"
+                  id={ index }
+                >
+                  {expens.tag}
                 </td>
-                <td className="text-var">Real</td>
+
+                <td
+                  className="text-var"
+                  id={ index }
+                >
+                  {expens.method}
+                </td>
+
+                <td
+                  className="text-var"
+                  id={ index }
+                >
+                  {Number(expens.value).toFixed(2)}
+                </td>
+
+                <td
+                  className="text-var"
+                  id={ index }
+                >
+                  {expens.exchangeRates[expens.currency].name}
+                </td>
+
+                <td
+                  className="text-var"
+                  id={ index }
+                >
+                  {Number(expens.exchangeRates[expens.currency].ask).toFixed(2)}
+                </td>
+
+                <td
+                  className="text-var"
+                  id={ index }
+                >
+                  {Number(
+                    expens.value * expens.exchangeRates[expens.currency].ask,
+                  ).toFixed(2)}
+                </td>
+
+                <td
+                  className="text-var"
+                  id={ index }
+                >
+                  Real
+                </td>
+
+                {/* <td>
+                  <button
+                    id={ index }
+                    type="button"
+                    onClick={ this.editExpense }
+                    data-testid="edit-btn"
+                  >
+                    Editar despesa
+                  </button>
+                </td> */}
+
+                <td>
+                  <button
+                    data-testid="delete-btn"
+                    id={ index }
+                    type="button"
+                    onClick={ () => this.delExpense(expens.id) }
+                  >
+                    Excluir
+                  </button>
+                </td>
+
               </tr>
             ))}
           </tbody>
@@ -50,8 +126,12 @@ const mapStateToProps = (state) => ({
   expenses: state.wallet.expenses,
 });
 
+const mapDispatchToProps = (dispatch) => ({
+  newExpenses: (expenses) => dispatch(deleteLine(expenses)),
+});
+
 Table.propTypes = {
   expenses: PropTypes.objectOf,
 }.isRequired;
 
-export default connect(mapStateToProps)(Table);
+export default connect(mapStateToProps, mapDispatchToProps)(Table);

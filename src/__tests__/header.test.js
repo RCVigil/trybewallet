@@ -20,4 +20,12 @@ describe('Testando o componente <Header />', () => {
 
     expect(paragCont).toBeInTheDocument(0);
   });
+
+  test('Testando se tem um email na tela', () => {
+    renderWithRedux(<Header />);
+
+    const emailCont = screen.getByTestId('email-field');
+
+    expect(emailCont).toBeInTheDocument();
+  });
 });

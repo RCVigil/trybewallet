@@ -25,14 +25,14 @@ class WalletForm extends Component {
     this.currencieHere();
   }
 
-    currencieHere = () => {
-      const { currenciesResponse } = this.props;
-      getCurrenciesMoney().then((response) => {
-        const payload = Object.keys(response);
-        const payFilter = payload.filter((elem) => elem !== 'USDT');
-        currenciesResponse(payFilter);
-      });
-    };
+  currencieHere = () => {
+    const { currenciesResponse } = this.props;
+    getCurrenciesMoney().then((response) => {
+      const payload = Object.keys(response);
+      const payFilter = payload.filter((elem) => elem !== 'USDT');
+      currenciesResponse(payFilter);
+    });
+  };
 
   handleChange = ({ target }) => {
     const { value, name } = target;
@@ -47,7 +47,8 @@ class WalletForm extends Component {
     const { expensesResponse } = this.props;
     const { id } = this.state;
 
-    expensesResponse({ ...this.state,
+    expensesResponse({
+      ...this.state,
       exchangeRates: await getCurrenciesMoney(),
     });
 
@@ -64,20 +65,14 @@ class WalletForm extends Component {
   render() {
     const { currencies } = this.props;
 
-    const {
-      value,
-      description,
-      currency,
-      method,
-      tag,
-    } = this.state;
+    const { value, description, currency, method, tag } = this.state;
 
     return (
-
       <div>
 
         <input
           type="number"
+          placeholder="valor gasto"
           value={ value }
           name="value"
           data-testid="value-input"
@@ -103,10 +98,7 @@ class WalletForm extends Component {
           required
         >
           {currencies.map((e) => (
-            <option
-              key={ e }
-              id="apiCurrencies"
-            >
+            <option key={ e } id="apiCurrencies">
               {e}
             </option>
           ))}
@@ -120,24 +112,15 @@ class WalletForm extends Component {
           onChange={ this.handleChange }
           required
         >
-          <option
-            id="payment"
-            value="Dinheiro"
-          >
+          <option id="payment" value="Dinheiro">
             Dinheiro
           </option>
 
-          <option
-            id="payment"
-            value="Cartão de crédito"
-          >
+          <option id="payment" value="Cartão de crédito">
             Cartão de crédito
           </option>
 
-          <option
-            id="payment"
-            value="Cartão de débito"
-          >
+          <option id="payment" value="Cartão de débito">
             Cartão de débito
           </option>
         </select>
@@ -150,38 +133,23 @@ class WalletForm extends Component {
           onChange={ this.handleChange }
           required
         >
-          <option
-            id="expensesType"
-            value="Alimentação"
-          >
+          <option id="expensesType" value="Alimentação">
             Alimentação
           </option>
 
-          <option
-            id="expensesType"
-            value="Lazer"
-          >
+          <option id="expensesType" value="Lazer">
             Lazer
           </option>
 
-          <option
-            id="expensesType"
-            value="Trabalho"
-          >
+          <option id="expensesType" value="Trabalho">
             Trabalho
           </option>
 
-          <option
-            id="expensesType"
-            value="Transporte"
-          >
+          <option id="expensesType" value="Transporte">
             Transporte
           </option>
 
-          <option
-            id="expensesType"
-            value="Saúde"
-          >
+          <option id="expensesType" value="Saúde">
             Saúde
           </option>
         </select>
@@ -205,7 +173,10 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   currenciesResponse: (currencies) => dispatch(newWalletAction(currencies)),
-  expensesResponse: (expenses) => dispatch(newExpensesActions(expenses)),
+
+  expensesResponse: (
+    expenses,
+  ) => dispatch(newExpensesActions(expenses)),
 });
 
 WalletForm.propTypes = {

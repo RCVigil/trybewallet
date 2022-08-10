@@ -20,4 +20,12 @@ describe('Testando o componente <Table />', () => {
 
     expect(tabTag).toBeInTheDocument();
   });
+
+  test('Testando se tem um Título "wallet table" na tela', () => {
+    renderWithRedux(<Table />);
+
+    const descTitle = screen.getByText(/wallet table/i);
+
+    expect(descTitle).toBeInTheDocument();
+  });
 });
